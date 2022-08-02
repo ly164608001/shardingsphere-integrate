@@ -1,128 +1,113 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
 
 package org.apache.shardingsphere.driver.jdbc.unsupported;
 
+import java.io.Reader;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.Ref;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.RowId;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import org.apache.shardingsphere.driver.jdbc.adapter.AbstractStatementAdapter;
 
-import java.io.Reader;
-import java.sql.*;
-
-/**
- * Unsupported {@code PreparedStatement} methods.
- */
 public abstract class AbstractUnsupportedOperationPreparedStatement extends AbstractStatementAdapter implements PreparedStatement {
-    
     protected AbstractUnsupportedOperationPreparedStatement() {
         super(PreparedStatement.class);
     }
-    
+
     @Override
     public final ResultSetMetaData getMetaData() throws SQLException {
         throw new SQLFeatureNotSupportedException("getMetaData");
     }
 
     @Override
-    public void setNString(final int parameterIndex, final String x) throws SQLException {
+    public void setNString(int parameterIndex, String x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNString");
     }
-    
+
     @Override
-    public final void setNClob(final int parameterIndex, final NClob x) throws SQLException {
+    public final void setNClob(int parameterIndex, NClob x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNClob");
     }
-    
+
     @Override
-    public final void setNClob(final int parameterIndex, final Reader x) throws SQLException {
+    public final void setNClob(int parameterIndex, Reader x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNClob");
     }
-    
+
     @Override
-    public final void setNClob(final int parameterIndex, final Reader x, final long length) throws SQLException {
+    public final void setNClob(int parameterIndex, Reader x, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNClob");
     }
-    
+
     @Override
-    public final void setNCharacterStream(final int parameterIndex, final Reader x) throws SQLException {
+    public final void setNCharacterStream(int parameterIndex, Reader x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNCharacterStream");
     }
-    
+
     @Override
-    public final void setNCharacterStream(final int parameterIndex, final Reader x, final long length) throws SQLException {
+    public final void setNCharacterStream(int parameterIndex, Reader x, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("setNCharacterStream");
     }
-    
+
     @Override
-    public final void setArray(final int parameterIndex, final Array x) throws SQLException {
-        throw new SQLFeatureNotSupportedException("setArray");
-    }
-    
-    @Override
-    public final void setRowId(final int parameterIndex, final RowId x) throws SQLException {
+    public final void setRowId(int parameterIndex, RowId x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setRowId");
     }
-    
+
     @Override
-    public final void setRef(final int parameterIndex, final Ref x) throws SQLException {
+    public final void setRef(int parameterIndex, Ref x) throws SQLException {
         throw new SQLFeatureNotSupportedException("setRef");
     }
-    
+
     @Override
-    public final ResultSet executeQuery(final String sql) throws SQLException {
+    public final ResultSet executeQuery(String sql) throws SQLException {
         throw new SQLFeatureNotSupportedException("executeQuery with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final int executeUpdate(final String sql) throws SQLException {
+    public final int executeUpdate(String sql) throws SQLException {
         throw new SQLFeatureNotSupportedException("executeUpdate with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final int executeUpdate(final String sql, final int autoGeneratedKeys) throws SQLException {
+    public final int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
         throw new SQLFeatureNotSupportedException("executeUpdate with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final int executeUpdate(final String sql, final int[] columnIndexes) throws SQLException {
+    public final int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
         throw new SQLFeatureNotSupportedException("executeUpdate with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final int executeUpdate(final String sql, final String[] columnNames) throws SQLException {
+    public final int executeUpdate(String sql, String[] columnNames) throws SQLException {
         throw new SQLFeatureNotSupportedException("executeUpdate with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final boolean execute(final String sql) throws SQLException {
+    public final boolean execute(String sql) throws SQLException {
         throw new SQLFeatureNotSupportedException("execute with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final boolean execute(final String sql, final int autoGeneratedKeys) throws SQLException {
+    public final boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
         throw new SQLFeatureNotSupportedException("execute with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final boolean execute(final String sql, final int[] columnIndexes) throws SQLException {
+    public final boolean execute(String sql, int[] columnIndexes) throws SQLException {
         throw new SQLFeatureNotSupportedException("execute with SQL for PreparedStatement");
     }
-    
+
     @Override
-    public final boolean execute(final String sql, final String[] columnNames) throws SQLException {
+    public final boolean execute(String sql, String[] columnNames) throws SQLException {
         throw new SQLFeatureNotSupportedException("execute with SQL for PreparedStatement");
     }
 }

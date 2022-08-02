@@ -20,6 +20,6 @@ org.apache.shardingsphere.infra.database.type.dialect.MySQLDatabaseType
 org.apache.shardingsphere.infra.database.type.dialect.MariaDBDatabaseType
 org.apache.shardingsphere.infra.database.type.dialect.PostgreSQLDatabaseType
 org.apache.shardingsphere.infra.database.type.dialect.OracleDatabaseType
-#org.apache.shardingsphere.infra.database.type.dialect.DmDatabaseType
+org.apache.shardingsphere.infra.database.type.dialect.DmDatabaseType
 org.apache.shardingsphere.infra.database.type.dialect.SQLServerDatabaseType
 org.apache.shardingsphere.infra.database.type.dialect.H2DatabaseType

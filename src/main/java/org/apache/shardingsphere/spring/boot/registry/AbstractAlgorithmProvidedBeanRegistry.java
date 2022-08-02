@@ -21,16 +21,16 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.apache.shardingsphere.infra.config.algorithm.ShardingSphereAlgorithm;
 import org.apache.shardingsphere.infra.config.algorithm.ShardingSphereAlgorithmPostProcessor;
-import org.apache.shardingsphere.infra.spi.ShardingSphereServiceLoader;
-import org.apache.shardingsphere.infra.spi.typed.TypedSPIRegistry;
-import org.apache.shardingsphere.infra.yaml.config.algorithm.YamlShardingSphereAlgorithmConfiguration;
+import org.apache.shardingsphere.infra.yaml.config.pojo.algorithm.YamlShardingSphereAlgorithmConfiguration;
+import org.apache.shardingsphere.spi.ShardingSphereServiceLoader;
+import org.apache.shardingsphere.spi.typed.TypedSPIRegistry;
 import org.apache.shardingsphere.spring.boot.util.PropertyUtil;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
-import org.springframework.core.Ordered;
+import org.springframework.core.PriorityOrdered;
 import org.springframework.core.env.Environment;
 
 import java.util.LinkedHashMap;
@@ -42,54 +42,67 @@ import java.util.stream.Collectors;
  * Abstract algorithm provided bean registry.
  */
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class AbstractAlgorithmProvidedBeanRegistry<T extends ShardingSphereAlgorithm> implements Ordered, BeanDefinitionRegistryPostProcessor, BeanPostProcessor {
+public abstract class AbstractAlgorithmProvidedBeanRegistry<T extends ShardingSphereAlgorithm> implements BeanDefinitionRegistryPostProcessor, BeanPostProcessor, PriorityOrdered {
+
+    private static final String POINT = ".";
+
+    private static final String PROPS = "props";
+
+    private static final String PROPS_SUFFIX = POINT + PROPS;
+
+    private static final String TYPE_SUFFIX = ".type";
 
     private final Environment environment;
 
-    @SuppressWarnings("all")
-    protected void registerBean(final String preFix, final Class<T> algorithmClass, final BeanDefinitionRegistry registry) {
-        Map<String, Object> paramMap = PropertyUtil.handle(environment, preFix, Map.class);
-        Set<String> keys = paramMap.keySet().stream().map(key -> {
-            return key.contains(".") ? key.substring(0, key.indexOf(".")) : key;
-        }).collect(Collectors.toSet());
-        Map<String, YamlShardingSphereAlgorithmConfiguration> shardingAlgorithmMap = new LinkedHashMap<>();
-        keys.forEach(each -> {
-            String type = environment.getProperty(preFix + each + ".type");
-            Map<String, Object> propsMap = PropertyUtil.handle(environment, preFix + each + ".props", Map.class);
-            YamlShardingSphereAlgorithmConfiguration config = new YamlShardingSphereAlgorithmConfiguration();
-            config.setType(type);
-            config.getProps().putAll(propsMap);
-            shardingAlgorithmMap.put(each, config);
-        });
-        ShardingSphereServiceLoader.register(algorithmClass);
-        shardingAlgorithmMap.forEach((k, v) -> {
-            ShardingSphereAlgorithm algorithm = TypedSPIRegistry.getRegisteredService(algorithmClass, v.getType(), v.getProps());
-            ((ShardingSphereAlgorithmPostProcessor) algorithm).init();
-            BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(algorithm.getClass());
-            builder.addPropertyValue("props", v.getProps());
-            registry.registerBeanDefinition(k, builder.getBeanDefinition());
-        });
+    @SuppressWarnings("unchecked")
+    protected final void registerBean(final String prefix, final Class<T> algorithmClass, final BeanDefinitionRegistry registry) {
+        boolean existPrefix = PropertyUtil.containPropertyPrefix(environment, prefix);
+        if (existPrefix) {
+            Map<String, Object> paramMap = PropertyUtil.handle(environment, prefix, Map.class);
+            Set<String> keys = paramMap.keySet().stream().map(key -> key.contains(POINT) ? key.substring(0, key.indexOf(POINT)) : key).collect(Collectors.toSet());
+            Map<String, YamlShardingSphereAlgorithmConfiguration> shardingAlgorithmMap = new LinkedHashMap<>();
+            keys.forEach(each -> {
+                YamlShardingSphereAlgorithmConfiguration config = new YamlShardingSphereAlgorithmConfiguration();
+                String propsPrefix = String.join("", prefix, each, PROPS_SUFFIX);
+                boolean existProps = PropertyUtil.containPropertyPrefix(environment, propsPrefix);
+                if (existProps) {
+                    Map<String, Object> propsMap = PropertyUtil.handle(environment, propsPrefix, Map.class);
+                    config.getProps().putAll(propsMap);
+                }
+                String typePrefix = String.join("", prefix, each, TYPE_SUFFIX);
+                String algorithmType = environment.getProperty(typePrefix);
+                config.setType(algorithmType);
+                shardingAlgorithmMap.put(each, config);
+            });
+            ShardingSphereServiceLoader.register(algorithmClass);
+            shardingAlgorithmMap.forEach((key, algorithmConfiguration) -> {
+                ShardingSphereAlgorithm algorithm = TypedSPIRegistry.getRegisteredService(algorithmClass, algorithmConfiguration.getType(), algorithmConfiguration.getProps());
+                BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(algorithm.getClass());
+                builder.addPropertyValue(PROPS, algorithmConfiguration.getProps());
+                registry.registerBeanDefinition(key, builder.getBeanDefinition());
+            });
+        }
     }
 
     @Override
-    public void postProcessBeanFactory(final ConfigurableListableBeanFactory configurableListableBeanFactory) {
+    public final void postProcessBeanFactory(final ConfigurableListableBeanFactory configurableListableBeanFactory) {
     }
 
     @Override
-    public Object postProcessBeforeInitialization(final Object bean, final String beanName) {
+    public final Object postProcessBeforeInitialization(final Object bean, final String beanName) {
         return bean;
     }
 
     @Override
-    public Object postProcessAfterInitialization(final Object bean, final String beanName) {
+    public final Object postProcessAfterInitialization(final Object bean, final String beanName) {
         if (bean instanceof ShardingSphereAlgorithmPostProcessor) {
             ((ShardingSphereAlgorithmPostProcessor) bean).init();
         }
         return bean;
     }
 
-    public int getOrder() {
-        return Integer.MIN_VALUE;
+    @Override
+    public int getOrder(){
+        return HIGHEST_PRECEDENCE;
     }
-
 }

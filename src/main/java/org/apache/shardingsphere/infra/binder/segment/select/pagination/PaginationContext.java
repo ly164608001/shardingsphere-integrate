@@ -54,7 +54,7 @@ public final class PaginationContext {
     private long getValue(final PaginationValueSegment paginationValueSegment, final List<Object> parameters) {
         if (paginationValueSegment instanceof ParameterMarkerPaginationValueSegment) {
             Object obj ;
-            //edit by ly adapted pagerhelper in oracle
+            //edit by ly adapted pagerhelper in oralce
 //            if(offsetSegment != null && ((ParameterMarkerPaginationValueSegment) offsetSegment).getParameterIndex() == parameters.size()) {
 //                obj = parameters.get(((ParameterMarkerPaginationValueSegment) paginationValueSegment).getParameterIndex() - 1);
 //            }else {
@@ -65,14 +65,6 @@ public final class PaginationContext {
                         (((ParameterMarkerPaginationValueSegment) offsetSegment).getParameterIndex() - parameters.size()) - 1);
             }else {
                 obj = parameters.get(((ParameterMarkerPaginationValueSegment) paginationValueSegment).getParameterIndex());
-                //edit by ly where used union all or union in page query then cause error
-                if(!(obj instanceof Integer) && parameters.size() > 2) {
-                    obj = parameters.get(parameters.size() - 2);
-                }
-                //when use pagehelper in mysql, there is no offset parameter
-                if(!(obj instanceof Integer) && parameters.size() > 1) {
-                    obj = parameters.get(parameters.size() - 1);
-                }
             }
             return obj instanceof Long ? (long) obj : (int) obj;
         } else {

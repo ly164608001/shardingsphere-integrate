@@ -23,8 +23,12 @@ import org.apache.shardingsphere.infra.database.metadata.dialect.DmDataSourceMet
 import org.apache.shardingsphere.infra.database.metadata.dialect.KingBaseDataSourceMetaData;
 import org.apache.shardingsphere.infra.database.metadata.dialect.OracleDataSourceMetaData;
 import org.apache.shardingsphere.infra.database.type.DatabaseType;
+import org.apache.shardingsphere.sql.parser.sql.common.constant.QuoteCharacter;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Database type of Oracle.
@@ -41,6 +45,11 @@ public final class OracleDatabaseType implements DatabaseType {
     }
 
     @Override
+    public QuoteCharacter getQuoteCharacter() {
+        return QuoteCharacter.QUOTE;
+    }
+
+    @Override
     public Collection<String> getJdbcUrlPrefixes() {
         return Lists.newArrayList(String.format("jdbc:%s:", getName().toLowerCase()),
                 String.format("jdbc:%s:", "dm".toLowerCase()),String.format("jdbc:%s", "kingbase".toLowerCase()));
@@ -54,5 +63,19 @@ public final class OracleDatabaseType implements DatabaseType {
             return new KingBaseDataSourceMetaData(url, username);
         }
         return new OracleDataSourceMetaData(url, username);
+    }
+
+    @Override
+    public String getSchema(Connection connection) {
+        try {
+            return (String) Optional.ofNullable(connection.getMetaData().getUserName()).map(String::toUpperCase).orElse(null);
+        } catch (SQLException var3) {
+            return null;
+        }
+    }
+
+    @Override
+    public String formatTableNamePattern(String tableNamePattern) {
+        return tableNamePattern.toUpperCase();
     }
 }

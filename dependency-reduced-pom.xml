@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bosssoft.nontax3.sharding</groupId>
   <artifactId>nontax3-sharding-integrate</artifactId>
-  <version>5.0.0-2022.03</version>
+  <version>5.0.0-2022.08-SNAPSHOT</version>
   <build>
     <plugins>
       <plugin>
@@ -30,33 +30,143 @@
                   <resource>META-INF/services/org.apache.shardingsphere.sharding.spi.ShardingAlgorithm</resource>
                 </transformer>
                 <transformer>
-                  <resource>META-INF/services/org.apache.shardingsphere.infra.yaml.swapper.YamlRuleConfigurationSwapper</resource>
-                </transformer>
-                <transformer>
-                  <resource>META-INF/services/org.apache.shardingsphere.infra.rule.ShardingSphereRuleBuilder</resource>
-                </transformer>
-                <transformer>
                   <resource>META-INF/services/org.apache.shardingsphere.infra.route.SQLRouter</resource>
                 </transformer>
                 <transformer>
                   <resource>META-INF/services/org.apache.shardingsphere.infra.rewrite.context.SQLRewriteContextDecorator</resource>
                 </transformer>
                 <transformer>
-                  <resource>META-INF/services/org.apache.shardingsphere.infra.metadata.model.logic.spi.LogicMetaDataLoader</resource>
-                </transformer>
-                <transformer>
-                  <resource>META-INF/services/org.apache.shardingsphere.infra.metadata.model.logic.spi.LogicMetaDataDecorator</resource>
-                </transformer>
-                <transformer>
-                  <resource>META-INF/services/org.apache.shardingsphere.infra.metadata.model.addressing.TableAddressingMetaDataDecorator</resource>
+                  <resource>META-INF/services//org.apache.shardingsphere.infra.metadata.schema.builder.spi.DialectTableMetaDataLoader</resource>
                 </transformer>
                 <transformer>
                   <resource>META-INF/services/org.apache.shardingsphere.infra.merge.engine.ResultProcessEngine</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.singletable.rule.builder.DefaultSingleTableSchemaRuleConfigurationBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.singletable.rule.builder.SingleTableRuleBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.singletable.route.SingleTableSQLRouter</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.singletable.metadata.SingleTableMetaDataBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.driver.state.DriverState</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.mode.manager.ContextManagerBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.rule.builder.global.DefaultGlobalRuleConfigurationBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.rule.builder.global.GlobalRuleBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.yaml.config.swapper.YamlRuleConfigurationSwapper</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.yaml.engine.representer.processor.ShardingSphereYamlTupleProcessor</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.yaml.engine.constructor.ShardingSphereYamlConstruct</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.rule.builder.schema.SchemaRuleBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.metadata.schema.builder.spi.RuleBasedTableMetaDataBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.config.checker.RuleConfigurationChecker</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.sql.parser.spi.DatabaseTypedSQLParserFacade</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.authority.provider.natived.builder.StoragePrivilegeHandler</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.executor.check.SQLChecker</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.executor.sql.process.spi.ExecuteProcessReporter</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.yaml.config.swapper.mode.PersistRepositoryConfigurationYamlSwapper</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.mode.manager.cluster.coordinator.registry.GovernanceWatcher</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.aware.DataSourceNameAware</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.config.checker.RuleConfigurationChecker</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.distsql.query.DistSQLResultSet</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.distsql.update.RuleDefinitionUpdater</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.distsql.parser.spi.FeaturedDistSQLStatementParserFacade</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.dbdiscovery.spi.DatabaseDiscoveryType</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.encrypt.spi.EncryptAlgorithm</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.config.datasource.creator.DataSourceCreator</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.config.datasource.killer.DataSourceKiller</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.database.type.DatabaseType</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.executor.sql.execute.engine.driver.jdbc.sane.SaneQueryResultEngine</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.executor.sql.prepare.driver.SQLExecutionUnitBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.optimize.context.parser.dialect.OptimizerSQLDialectBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.spring.boot.datasource.prop.DataSourcePropertiesSetter</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.readwritesplitting.spi.ReplicaLoadBalanceAlgorithm</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.shadow.spi.ShadowAlgorithm</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.distsql.preprocess.RuleDefinitionAlterPreprocessor</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.rule.builder.schema.DefaultSchemaRuleConfigurationBuilder</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.mode.repository.standalone.StandalonePersistRepository</resource>
+                </transformer>
+                <transformer>
+                  <resource>META-INF/services/org.apache.shardingsphere.infra.datetime.DatetimeService</resource>
                 </transformer>
               </transformers>
               <artifactSet>
                 <includes>
                   <include>org.apache.shardingsphere:*</include>
+                  <include>org.apache.calcite:*</include>
+                  <include>org.checkerframework:*</include>
                 </includes>
               </artifactSet>
             </configuration>
@@ -81,16 +191,188 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-      <version>1.16</version>
+      <groupId>com.esri.geometry</groupId>
+      <artifactId>esri-geometry-api</artifactId>
+      <version>2.2.0</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.10.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.10</version>
+      <groupId>org.apache.calcite.avatica</groupId>
+      <artifactId>avatica-core</artifactId>
+      <version>1.18.0</version>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.calcite.avatica</groupId>
+      <artifactId>avatica-metrics</artifactId>
+      <version>1.18.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.6.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.9</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.11</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apiguardian</groupId>
+      <artifactId>apiguardian-api</artifactId>
+      <version>1.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.0</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>2.10.0</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>snakeyaml</artifactId>
+          <groupId>org.yaml</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.google.uzaygezen</groupId>
+      <artifactId>uzaygezen-core</artifactId>
+      <version>0.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>2.4.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.minidev</groupId>
+      <artifactId>json-smart</artifactId>
+      <version>2.3</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.minidev</groupId>
+      <artifactId>accessors-smart</artifactId>
+      <version>1.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>5.0.4</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.yahoo.datasketches</groupId>
+      <artifactId>sketches-core</artifactId>
+      <version>0.9.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.yahoo.datasketches</groupId>
+      <artifactId>memory</artifactId>
+      <version>0.9.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.hydromatic</groupId>
+      <artifactId>aggdesigner-algorithm</artifactId>
+      <version>6.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.3</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>2.6.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+      <version>2.6.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.8</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>commons-compiler</artifactId>
+      <version>3.0.11</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>3.0.11</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -101,7 +383,143 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
-      <version>4.7.2</version>
+      <version>4.9.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-lite-core</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>snakeyaml</artifactId>
+          <groupId>org.yaml</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-api</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-infra-common</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>snakeyaml</artifactId>
+          <groupId>org.yaml</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-registry-center</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-framework</artifactId>
+      <version>5.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-recipes</artifactId>
+      <version>5.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-simple-executor</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-executor-kernel</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-error-handler-general</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-error-handler-spi</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-dataflow-executor</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-script-executor</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-exec</artifactId>
+      <version>1.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-http-executor</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-tracing-rdb</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere.elasticjob</groupId>
+      <artifactId>elasticjob-tracing-api</artifactId>
+      <version>3.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.6.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.3.2</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>c3p0</artifactId>
+          <groupId>com.mchange</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>HikariCP-java7</artifactId>
+          <groupId>com.zaxxer</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>mchange-commons-java</artifactId>
+      <version>0.2.15</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -109,6 +527,16 @@
       <artifactId>guava</artifactId>
       <version>29.0-jre</version>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>error_prone_annotations</artifactId>
+          <groupId>com.google.errorprone</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>j2objc-annotations</artifactId>
+          <groupId>com.google.j2objc</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -129,33 +557,105 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker-qual</artifactId>
-      <version>2.11.1</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.7</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_annotations</artifactId>
-      <version>2.3.4</version>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-client</artifactId>
+      <version>5.1.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.j2objc</groupId>
-      <artifactId>j2objc-annotations</artifactId>
-      <version>1.3</version>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.6.0</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper-jute</artifactId>
+      <version>3.6.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.yetus</groupId>
+      <artifactId>audience-annotations</artifactId>
+      <version>0.5.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-handler</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-common</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-buffer</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-transport</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-resolver</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-codec</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-transport-native-epoll</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-transport-native-unix-common</artifactId>
+      <version>4.1.45.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.7</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.7</version>
+      <version>1.7.25</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -170,7 +670,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <shardingsphere.version>5.0.0-alpha</shardingsphere.version>
+    <shardingsphere.version>5.0.0</shardingsphere.version>
   </properties>
 </project>
 
