@@ -17,9 +17,7 @@ import java.sql.SQLFeatureNotSupportedException;
 import org.apache.shardingsphere.driver.jdbc.adapter.AbstractStatementAdapter;
 
 public abstract class AbstractUnsupportedOperationPreparedStatement extends AbstractStatementAdapter implements PreparedStatement {
-    protected AbstractUnsupportedOperationPreparedStatement() {
-        super(PreparedStatement.class);
-    }
+
 
     @Override
     public final ResultSetMetaData getMetaData() throws SQLException {

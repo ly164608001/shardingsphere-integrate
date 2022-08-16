@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.shardingsphere.infra.config.exception.ShardingSphereConfigurationException;
-import org.apache.shardingsphere.sharding.algorithm.sharding.ShardingAlgorithmException;
+import org.apache.shardingsphere.infra.datanode.DataNodeInfo;
 import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
 import org.apache.shardingsphere.sharding.api.sharding.standard.RangeShardingValue;
 import org.apache.shardingsphere.sharding.api.sharding.standard.StandardShardingAlgorithm;
@@ -13,10 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -57,7 +54,8 @@ public class DateShardingAlgorithm implements StandardShardingAlgorithm<Comparab
     private ChronoUnit stepUnit;
 
     @Override
-    public void init() {
+    public void init(final Properties props) {
+        this.props = props;
         String dateTimePattern = getDateTimePattern();
         dateTimeFormatter = DateTimeFormatter.ofPattern(dateTimePattern);
         dateTimePatternLength = dateTimePattern.length();
@@ -108,7 +106,7 @@ public class DateShardingAlgorithm implements StandardShardingAlgorithm<Comparab
     public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<Comparable<?>> shardingValue) {
         return availableTargetNames.stream()
                 .filter(each -> each.endsWith(parseDateTime(shardingValue.getValue().toString()).format(tableSuffixPattern)))
-                .findFirst().orElseThrow(() -> new ShardingAlgorithmException(String.format("failed to shard value %s, and availableTables %s", shardingValue, availableTargetNames)));
+                .findFirst().orElseThrow(() -> new RuntimeException(String.format("failed to shard value %s, and availableTables %s", shardingValue, availableTargetNames)));
     }
 
     @Override
@@ -130,6 +128,11 @@ public class DateShardingAlgorithm implements StandardShardingAlgorithm<Comparab
         return result;
     }
 
+    @Override
+    public Optional<String> findMatchedTargetName(Collection<String> availableTargetNames, String suffix, DataNodeInfo dataNodeInfo) {
+        return Optional.empty();
+    }
+
     private LocalDate parseDateTime(final String value) {
         return LocalDate.parse(value.substring(0, dateTimePatternLength), dateTimeFormatter);
     }
@@ -145,12 +148,13 @@ public class DateShardingAlgorithm implements StandardShardingAlgorithm<Comparab
     }
 
     @Override
+    public Collection<String> getTypeAliases() {
+        return Collections.singleton("DATE");
+    }
+
+    @Override
     public Properties getProps() {
         return props;
     }
 
-    @Override
-    public void setProps(Properties props) {
-        this.props = props;
-    }
 }

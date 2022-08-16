@@ -28,6 +28,8 @@ import org.apache.shardingsphere.sql.parser.sql.common.constant.QuoteCharacter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -40,7 +42,7 @@ public final class OracleDatabaseType implements DatabaseType {
     private static final String KINGBASE_PREFIX = "jdbc:kingbase";
 
     @Override
-    public String getName() {
+    public String getType() {
         return "Oracle";
     }
 
@@ -51,7 +53,7 @@ public final class OracleDatabaseType implements DatabaseType {
 
     @Override
     public Collection<String> getJdbcUrlPrefixes() {
-        return Lists.newArrayList(String.format("jdbc:%s:", getName().toLowerCase()),
+        return Lists.newArrayList(String.format("jdbc:%s:", getType().toLowerCase()),
                 String.format("jdbc:%s:", "dm".toLowerCase()),String.format("jdbc:%s", "kingbase".toLowerCase()));
     }
 
@@ -63,6 +65,16 @@ public final class OracleDatabaseType implements DatabaseType {
             return new KingBaseDataSourceMetaData(url, username);
         }
         return new OracleDataSourceMetaData(url, username);
+    }
+
+    @Override
+    public Map<String, Collection<String>> getSystemDatabaseSchemaMap() {
+        return Collections.emptyMap();
+    }
+
+    @Override
+    public Collection<String> getSystemSchemas() {
+        return Collections.emptyList();
     }
 
     @Override

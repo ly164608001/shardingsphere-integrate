@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -18,8 +19,9 @@ import java.util.Optional;
  */
 public final class DmDatabaseType implements DatabaseType {
 
+
     @Override
-    public String getName() {
+    public String getType() {
         return "Oracle";
     }
 
@@ -36,6 +38,16 @@ public final class DmDatabaseType implements DatabaseType {
     @Override
     public DataSourceMetaData getDataSourceMetaData(String url, String username) {
         return new DmDataSourceMetaData(url, username);
+    }
+
+    @Override
+    public Map<String, Collection<String>> getSystemDatabaseSchemaMap() {
+        return null;
+    }
+
+    @Override
+    public Collection<String> getSystemSchemas() {
+        return null;
     }
 
     @Override
