@@ -258,7 +258,8 @@ public abstract class AbstractPreparedStatementAdapter extends AbstractUnsupport
 
     @Override
     public final void setNString(final int parameterIndex, final String x) {
-        setParameter(parameterIndex, createParameter(Types.NVARCHAR, x));
+        //setParameter(parameterIndex, createParameter(Types.NVARCHAR, x));
+        setParameter(parameterIndex, x);
     }
 
     private JdbcParameter createParameter(int sqlType, Object value) {
